@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model State {
+  id        Int        @id @default(autoincrement())
+  name      String
+  districts District[]
+}
+
+model District {
+  id           Int           @id @default(autoincrement())
+  name         String
+  state_id     Int
+  state        State         @relation(fields: [state_id], references: [id])
+  subDistricts SubDistrict[]
+}
+
+model SubDistrict {
+  id          Int        @id @default(autoincrement())
+  name        String
+  district_id Int
+  district    District   @relation(fields: [district_id], references: [id])
+  villages    Village[]
+}
+
+model Village {
+  id              Int         @id @default(autoincrement())
+  name            String
+  sub_district_id Int
+  subDistrict     SubDistrict @relation(fields: [sub_district_id], references: [id])
+}
+
+model Client {
+  id         Int      @id @default(autoincrement())
+  name       String
+  api_key    String   @unique
+  secret     String
+  created_at DateTime @default(now())
+  apiLogs    ApiLog[]
+}
+
+model ApiLog {
+  id            Int      @id @default(autoincrement())
+  endpoint      String
+  timestamp     DateTime @default(now())
+  client_id     Int?
+  client        Client?  @relation(fields: [client_id], references: [id])
+  response_time Int?
+}

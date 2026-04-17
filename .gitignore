@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+.venv/
+env/
+venv/
+ENV/
+bin/
+lib/
+share/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build artifacts
+dist/
+build/
+.next/
+out/
+*.log
+*.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large Data Files (Datasets)
+all-india-villages-master-list-excel/
+dataset/
+*.xlsx
+*.xls
+*.ods
+*.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
